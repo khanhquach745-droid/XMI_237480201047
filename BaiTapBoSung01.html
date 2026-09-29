@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đọc file XML</title>
+</head>
+<body>
+
+    <h2>Thông tin XML</h2>
+
+    <p id="root"></p>
+    <p id="child"></p>
+
+    <script>
+        // Tải file XML
+        fetch("class.xml")
+            .then(response => response.text())
+            .then(xmlString => {
+
+                // Chuyển chuỗi XML thành XML DOM
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+                // Lấy nút gốc
+                const root = xmlDoc.documentElement;
+
+                // Lấy nút con đầu tiên
+                const firstChild = root.firstElementChild;
+
+                // In kết quả ra màn hình
+                document.getElementById("root").textContent =
+                    "Tên nút gốc: " + root.nodeName;
+
+                document.getElementById("child").textContent =
+                    "Tên thẻ nút con đầu tiên: " + firstChild.nodeName;
+
+                // Đồng thời in ra Console
+                console.log("Tên nút gốc:", root.nodeName);
+                console.log("Tên thẻ nút con đầu tiên:", firstChild.nodeName);
+            })
+            .catch(error => {
+                console.error("Lỗi:", error);
+            });
+    </script>
+
+</body>
+</html>

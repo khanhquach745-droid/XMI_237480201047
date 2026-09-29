@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 8</title>
+</head>
+<body>
+
+<h2>Bài 8: Xóa nhân viên có mã 001</h2>
+
+<div id="result"></div>
+
+<script>
+
+let xhr = new XMLHttpRequest();
+
+xhr.open("GET", "danhsachnhanvien.xml", true);
+
+xhr.onload = function () {
+
+    if (xhr.status == 200) {
+
+        let xmlDoc = xhr.responseXML;
+
+        // Lấy node gốc danhsach
+        let danhSach =
+            xmlDoc.getElementsByTagName("danhsach")[0];
+
+        // Lấy tất cả nhân viên
+        let nhanViens =
+            xmlDoc.getElementsByTagName("nhanvien");
+
+        // Tìm nhân viên có mã 001
+        for (let i = 0; i < nhanViens.length; i++) {
+
+            let maNV =
+                nhanViens[i]
+                .getElementsByTagName("manv")[0]
+                .textContent
+                .trim();
+
+            if (maNV == "001") {
+
+                // Xóa nhân viên 001
+                danhSach.removeChild(nhanViens[i]);
+
+                break;
+            }
+        }
+
+        // Hiển thị danh sách sau khi xóa
+        let danhSachMoi =
+            danhSach.getElementsByTagName("nhanvien");
+
+        let html =
+            "<h3>Danh sách nhân viên sau khi xóa mã 001:</h3>";
+
+        html += "<table border='1' cellpadding='10'>";
+
+        html += `
+            <tr>
+                <th>Mã NV</th>
+                <th>Họ tên</th>
+                <th>Đơn vị</th>
+                <th>Lương</th>
+            </tr>
+        `;
+
+        for (let i = 0; i < danhSachMoi.length; i++) {
+
+            let manv =
+                danhSachMoi[i]
+                .getElementsByTagName("manv")[0]
+                .textContent;
+
+            let hoten =
+                danhSachMoi[i]
+                .getElementsByTagName("hoten")[0]
+                .textContent;
+
+            let donvi =
+                danhSachMoi[i]
+                .getElementsByTagName("donvi")[0]
+                .textContent;
+
+            let luong =
+                danhSachMoi[i]
+                .getElementsByTagName("luong")[0]
+                .textContent;
+
+            html += `
+                <tr>
+                    <td>${manv}</td>
+                    <td>${hoten}</td>
+                    <td>${donvi}</td>
+                    <td>${luong}</td>
+                </tr>
+            `;
+        }
+
+        html += "</table>";
+
+        document.getElementById("result").innerHTML = html;
+    }
+};
+
+xhr.send();
+
+</script>
+
+</body>
+</html>

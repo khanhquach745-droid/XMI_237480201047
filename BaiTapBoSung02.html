@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+</head>
+<body>
+
+<h2>Danh sách tiêu đề sách</h2>
+
+<div id="result"></div>
+
+<script>
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "books.xml", true);
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+
+            // Chuyển nội dung XML thành DOM
+            const xmlDoc = xhr.responseXML;
+
+            // Lấy tất cả thẻ title
+            const titles = xmlDoc.getElementsByTagName("title");
+
+            let result = "";
+
+            for (let i = 0; i < titles.length; i++) {
+                result += titles[i].firstChild.nodeValue + "<br>";
+            }
+
+            document.getElementById("result").innerHTML = result;
+        }
+    };
+
+    xhr.send();
+</script>
+
+</body>
+</html>

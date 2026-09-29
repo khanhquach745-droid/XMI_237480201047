@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Bài 03</h3>
+<p id="kq"></p>
+
+<script>
+let xhttp = new XMLHttpRequest();
+
+xhttp.open("GET", "danhsachnhanvien.xml", true);
+
+xhttp.onload = function() {
+    let xml = xhttp.responseXML;
+    let ds = xml.getElementsByTagName("nhanvien");
+
+    let tongluong = 0;
+
+    for (let i = 0; i < ds.length; i++) {
+        let luong = ds[i].getElementsByTagName("luong")[0].textContent.trim();
+
+        // Xóa dấu chấm và chuyển sang số
+        luong = Number(luong.replace(/\./g, ""));
+
+        tongluong += luong;
+    }
+
+    document.getElementById("kq").innerHTML =
+        "Tổng lương: " + tongluong.toLocaleString("vi-VN") + " đồng";
+};
+
+xhttp.send();
+</script>
+
+</body>
+</html>

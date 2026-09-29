@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 10</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 700px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Danh sách nhân viên</h2>
+
+<!-- Ô tìm kiếm -->
+<input
+    type="text"
+    id="search"
+    placeholder="Nhập tên đơn vị..."
+>
+
+<br>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Mã NV</th>
+            <th>Họ tên</th>
+            <th>Đơn vị</th>
+            <th>Lương</th>
+        </tr>
+    </thead>
+
+    <tbody id="employeeTable">
+    </tbody>
+
+</table>
+
+<script>
+
+// Mảng lưu danh sách nhân viên
+let danhSachNhanVien = [];
+
+
+// ==========================================
+// Đọc file XML
+// ==========================================
+
+let xhr = new XMLHttpRequest();
+
+xhr.open(
+    "GET",
+    "danhsachnhanvien.xml",
+    true
+);
+
+xhr.onload = function () {
+
+    if (xhr.status == 200) {
+
+        let xmlDoc = xhr.responseXML;
+
+        let nhanViens =
+            xmlDoc.getElementsByTagName("nhanvien");
+
+        // Duyệt tất cả nhân viên
+        for (let i = 0; i < nhanViens.length; i++) {
+
+            let manv =
+                nhanViens[i]
+                .getElementsByTagName("manv")[0]
+                .textContent
+                .trim();
+
+            let hoten =
+                nhanViens[i]
+                .getElementsByTagName("hoten")[0]
+                .textContent
+                .trim();
+
+            let donvi =
+                nhanViens[i]
+                .getElementsByTagName("donvi")[0]
+                .textContent
+                .trim();
+
+            let luong =
+                nhanViens[i]
+                .getElementsByTagName("luong")[0]
+                .textContent
+                .trim();
+
+            // Thêm vào mảng
+            danhSachNhanVien.push({
+                manv: manv,
+                hoten: hoten,
+                donvi: donvi,
+                luong: luong
+            });
+        }
+
+        // Tự động hiển thị ngay khi mở trang
+        hienThiNhanVien(danhSachNhanVien);
+    }
+};
+
+xhr.send();
+
+
+// ==========================================
+// Hàm hiển thị bảng
+// ==========================================
+
+function hienThiNhanVien(danhSach) {
+
+    let table =
+        document.getElementById("employeeTable");
+
+    // Xóa bảng cũ
+    table.innerHTML = "";
+
+    for (let i = 0; i < danhSach.length; i++) {
+
+        let row = table.insertRow();
+
+        row.insertCell(0).textContent =
+            danhSach[i].manv;
+
+        row.insertCell(1).textContent =
+            danhSach[i].hoten;
+
+        row.insertCell(2).textContent =
+            danhSach[i].donvi;
+
+        row.insertCell(3).textContent =
+            danhSach[i].luong;
+    }
+}
+
+
+// ==========================================
+// Tìm kiếm theo đơn vị
+// ==========================================
+
+document
+    .getElementById("search")
+    .addEventListener("input", function () {
+
+        let tuKhoa =
+            this.value
+            .trim()
+            .toLowerCase();
+
+        let ketQua = [];
+
+        for (let i = 0; i < danhSachNhanVien.length; i++) {
+
+            let donVi =
+                danhSachNhanVien[i]
+                .donvi
+                .toLowerCase();
+
+            // Kiểm tra đơn vị có chứa từ khóa
+            if (donVi.includes(tuKhoa)) {
+
+                ketQua.push(
+                    danhSachNhanVien[i]
+                );
+            }
+        }
+
+        hienThiNhanVien(ketQua);
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3</title>
+</head>
+<body>
+
+<h2>Bài 3: Truy xuất nút con đầu tiên và cuối cùng</h2>
+
+<button onclick="docXML()">Thực hiện</button>
+
+<p id="result"></p>
+
+<script>
+function docXML() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "books.xml", true);
+
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            let xmlDoc = xhr.responseXML;
+
+            // Lấy phần tử book đầu tiên
+            let book = xmlDoc.getElementsByTagName("book")[0];
+
+            // Nút con đầu tiên: title
+            let first = book.firstElementChild;
+
+            // Nút con cuối cùng: price
+            let last = book.lastElementChild;
+
+            document.getElementById("result").innerHTML =
+                "Nút con đầu tiên: " + first.nodeName +
+                " = " + first.textContent + "<br>" +
+
+                "Nút con cuối cùng: " + last.nodeName +
+                " = " + last.textContent;
+        }
+    };
+
+    xhr.send();
+}
+</script>
+
+</body>
+</html>

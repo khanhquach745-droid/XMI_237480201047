@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 9</title>
+</head>
+<body>
+
+<h2>Bài 9: Tăng lương 10% cho nhân viên Kỹ thuật</h2>
+
+<div id="result"></div>
+
+<script>
+
+let xhr = new XMLHttpRequest();
+
+xhr.open("GET", "danhsachnhanvien.xml", true);
+
+xhr.onload = function () {
+
+    if (xhr.status == 200) {
+
+        let xmlDoc = xhr.responseXML;
+
+        let nhanViens =
+            xmlDoc.getElementsByTagName("nhanvien");
+
+        let html = "";
+
+        for (let i = 0; i < nhanViens.length; i++) {
+
+            // Lấy đơn vị
+            let donVi =
+                nhanViens[i]
+                .getElementsByTagName("donvi")[0]
+                .textContent
+                .trim();
+
+            // Nếu là Kỹ thuật
+            if (donVi == "Kỹ thuật") {
+
+                let hoTen =
+                    nhanViens[i]
+                    .getElementsByTagName("hoten")[0]
+                    .textContent;
+
+                let luongNode =
+                    nhanViens[i]
+                    .getElementsByTagName("luong")[0];
+
+                // Lương cũ
+                let luongCu =
+                    parseFloat(luongNode.textContent);
+
+                // Tăng 10%
+                let luongMoi =
+                    luongCu * 1.10;
+
+                // Thay đổi Text Node
+                luongNode.firstChild.nodeValue =
+                    luongMoi;
+
+                // Hiển thị
+                html += `
+                    <div>
+                        <b>Nhân viên:</b> ${hoTen}<br>
+                        <b>Đơn vị:</b> ${donVi}<br>
+                        <b>Lương cũ:</b> ${luongCu}<br>
+                        <b>Lương mới:</b> ${luongMoi}
+                    </div>
+                    <hr>
+                `;
+            }
+        }
+
+        document.getElementById("result").innerHTML =
+            html;
+    }
+};
+
+xhr.send();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4</title>
+</head>
+<body>
+
+<h2>Bài 4: Sách có giá lớn hơn 30.00</h2>
+
+<button onclick="locSach()">Hiển thị</button>
+
+<div id="result"></div>
+
+<script>
+function locSach() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "books.xml", true);
+
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+
+            let xmlDoc = xhr.responseXML;
+
+            // Lấy tất cả book
+            let books = xmlDoc.getElementsByTagName("book");
+
+            let result = "<ul>";
+
+            for (let i = 0; i < books.length; i++) {
+
+                // Lấy title và price
+                let title = books[i]
+                    .getElementsByTagName("title")[0]
+                    .textContent;
+
+                let price = parseFloat(
+                    books[i]
+                    .getElementsByTagName("price")[0]
+                    .textContent
+                );
+
+                // Kiểm tra giá
+                if (price > 30.00) {
+                    result += "<li>" + title + "</li>";
+                }
+            }
+
+            result += "</ul>";
+
+            document.getElementById("result").innerHTML = result;
+        }
+    };
+
+    xhr.send();
+}
+</script>
+
+</body>
+</html>

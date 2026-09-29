@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 6</title>
+</head>
+<body>
+
+<h2>Bài 6: Sử dụng parentNode</h2>
+
+<button onclick="timNhanVien()">Tìm nhân viên 002</button>
+
+<p id="result"></p>
+
+<script>
+function timNhanVien() {
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "danhsachnhanvien.xml", true);
+
+    xhr.onload = function () {
+
+        if (xhr.status == 200) {
+
+            let xmlDoc = xhr.responseXML;
+
+            let danhSachMa =
+                xmlDoc.getElementsByTagName("manv");
+
+            for (let i = 0; i < danhSachMa.length; i++) {
+
+                if (danhSachMa[i].textContent.trim() == "002") {
+
+                    // manv → parentNode → nhanvien
+                    let nhanVien = danhSachMa[i].parentNode;
+
+                    // Từ nhanvien lấy donvi
+                    let donVi = nhanVien
+                        .getElementsByTagName("donvi")[0]
+                        .textContent;
+
+                    document.getElementById("result").innerHTML =
+                        "Mã nhân viên: 002<br>" +
+                        "Đơn vị: " + donVi;
+
+                    break;
+                }
+            }
+        }
+    };
+
+    xhr.send();
+}
+</script>
+
+</body>
+</html>

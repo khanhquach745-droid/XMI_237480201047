@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<danhsach>
+    <nhanvien>
+        <manv>001</manv>
+        <hoten>Nguyen Van An</hoten>
+        <donvi>Kỹ thuật</donvi>
+        <luong>1000</luong>
+    </nhanvien>
+
+    <nhanvien>
+        <manv>002</manv>
+        <hoten>Tran Thi Binh</hoten>
+        <donvi>Hành chính</donvi>
+        <luong>1200</luong>
+    </nhanvien>
+
+    <nhanvien>
+        <manv>003</manv>
+        <hoten>Le Van Cuong</hoten>
+        <donvi>Kỹ thuật</donvi>
+        <luong>1500</luong>
+    </nhanvien>
+
+    <nhanvien>
+        <manv>004</manv>
+        <hoten>Pham Thi Dung</hoten>
+        <donvi>Kế toán</donvi>
+        <luong>1300</luong>
+    </nhanvien>
+</danhsach>

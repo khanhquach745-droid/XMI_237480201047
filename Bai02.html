@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Bài 02</h3>
+<div id="kq"></div>
+
+<script>
+let xhttp = new XMLHttpRequest();
+
+xhttp.open("GET", "danhsachnhanvien.xml", true);
+
+xhttp.onload = function() {
+    let xml = xhttp.responseXML;
+    let ds = xml.getElementsByTagName("donvi");
+
+    for (let i = 0; i < ds.length; i++) {
+        document.getElementById("kq").innerHTML +=
+            ds[i].textContent + "<br>";
+    }
+};
+
+xhttp.send();
+</script>
+
+</body>
+</html>
