@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cập nhật giảng viên</title>
+</head>
+
+<body>
+
+<h2>CẬP NHẬT ĐƠN VỊ GIẢNG VIÊN</h2>
+
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>Họ tên</th>
+        <th>Ngành</th>
+        <th>Đơn vị</th>
+    </tr>
+
+    <tbody id="ds"></tbody>
+</table>
+
+<script>
+
+fetch("hosogiangvien.xml")
+.then(response => response.text())
+.then(data => {
+
+    let xml = new DOMParser().parseFromString(data, "text/xml");
+
+    let giangvien = xml.getElementsByTagName("giangvien");
+
+    // Tìm giảng viên Phạm Thanh Loan
+    for (let i = 0; i < giangvien.length; i++) {
+
+        let hoten = giangvien[i]
+            .getElementsByTagName("hoten")[0]
+            .textContent
+            .trim();
+
+        if (hoten === "Phạm Thanh Loan") {
+
+            // Cập nhật đơn vị
+            giangvien[i]
+                .getElementsByTagName("donvi")[0]
+                .textContent = "Cơ bản";
+        }
+    }
+
+    // In danh sách sau khi cập nhật
+    let kq = "";
+
+    for (let i = 0; i < giangvien.length; i++) {
+
+        let hoten = giangvien[i].getElementsByTagName("hoten")[0].textContent;
+        let nganh = giangvien[i].getElementsByTagName("nganh")[0].textContent;
+        let donvi = giangvien[i].getElementsByTagName("donvi")[0].textContent;
+
+        kq += "<tr>";
+        kq += "<td>" + (i + 1) + "</td>";
+        kq += "<td>" + hoten + "</td>";
+        kq += "<td>" + nganh + "</td>";
+        kq += "<td>" + donvi + "</td>";
+        kq += "</tr>";
+    }
+
+    document.getElementById("ds").innerHTML = kq;
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách môn học</title>
+</head>
+
+<body>
+
+<h2>DANH SÁCH MÔN HỌC CÓ NHÀ XUẤT BẢN MINH KHAI</h2>
+
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>Tên môn học</th>
+        <th>Nhà xuất bản</th>
+        <th>Tác giả</th>
+    </tr>
+
+    <tbody id="ds"></tbody>
+</table>
+
+<script>
+
+fetch("dsmonhoc.xml")
+.then(response => response.text())
+.then(data => {
+
+    let xml = new DOMParser().parseFromString(data, "text/xml");
+
+    let monhoc = xml.getElementsByTagName("subject");
+
+    let kq = "";
+    let stt = 1;
+
+    for (let i = 0; i < monhoc.length; i++) {
+
+        let ten = monhoc[i].getElementsByTagName("title")[0].textContent;
+        let nxb = monhoc[i].getElementsByTagName("publisher")[0].textContent;
+        let tacgia = monhoc[i].getElementsByTagName("author")[0].textContent;
+
+        if (nxb.trim() == "Minh Khai") {
+
+            kq += "<tr>";
+            kq += "<td>" + stt + "</td>";
+            kq += "<td>" + ten + "</td>";
+            kq += "<td>" + nxb + "</td>";
+            kq += "<td>" + tacgia + "</td>";
+            kq += "</tr>";
+
+            stt++;
+        }
+    }
+
+    document.getElementById("ds").innerHTML = kq;
+
+});
+
+</script>
+
+</body>
+</html>

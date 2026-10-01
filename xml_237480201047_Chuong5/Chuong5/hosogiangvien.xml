@@ -1,0 +1,19 @@
+<hoso>
+    <giangvien>
+        <hoten> Huỳnh Huy Tuấn </hoten>
+        <nganh> Khoa học máy tính </nganh>
+        <donvi> Khoa Công Nghệ Thông Tin </donvi>
+    </giangvien>
+
+    <giangvien>
+        <hoten> Võ Ngọc Lợi </hoten>
+        <nganh> Hệ thống thông tin </nganh>
+        <donvi> Khoa Công Nghệ Thông Tin </donvi>
+    </giangvien>
+
+    <giangvien>
+        <hoten> Phạm Thanh Loan </hoten>
+        <nganh> Tiếng Anh </nganh>
+        <donvi> Khoa Sư phạm </donvi>
+    </giangvien>
+</hoso>

@@ -1,0 +1,31 @@
+<subjects>
+    <subject>
+        <title> Lập Trình Web </title>
+        <publisher> Minh Khai </publisher>
+        <author> Hoàng Hôn </author>
+    </subject>
+
+    <subject>
+        <title> Phân tích TK Hệ thống </title>
+        <publisher> Giáo dục </publisher>
+        <author> Phương Anh </author>
+    </subject>
+
+    <subject>
+        <title> Ngôn ngữ lạp trình </title>
+        <publisher> Minh Khai </publisher>
+        <author> Phước Nghĩa </author>
+    </subject>
+
+    <subject>
+        <title> Mạng máy tính </title>
+        <publisher> ĐH Cần Thơ </publisher>
+        <author> Ngọc Lợi </author>
+    </subject>
+
+    <subject>
+        <title> Lập Trình Python </title>
+        <publisher> Giáo dục </publisher>
+        <author> Khánh Luân </author>
+    </subject>
+</subjects>
