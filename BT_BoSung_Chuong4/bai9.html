@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 9</title>
+</head>
+<body>
+    <h2>Danh sách lương sau khi cập nhật</h2>
+    <div id="output"></div>
+
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xhttp.open("GET", "danhsachnhanvien.xml", true);
+        xhttp.send();
+
+        function myFunction(xml) {
+            var xmlDoc = xml.responseXML;
+            var nhanviens = xmlDoc.getElementsByTagName("nhanvien");
+            var txt = "";
+
+            for (var i = 0; i < nhanviens.length; i++) {
+                var donviNode = nhanviens[i].getElementsByTagName("donvi")[0];
+                var luongNode = nhanviens[i].getElementsByTagName("luong")[0];
+
+                if (donviNode && luongNode) {
+                    var donvi = donviNode.textContent.trim();
+                    var textNode = luongNode.childNodes[0];
+
+                    if (donvi.toLowerCase() === "kỹ thuật" && textNode) {
+                        var rawLuong = textNode.nodeValue.replace(/\./g, "").trim();
+                        var luongSo = parseFloat(rawLuong);
+                        if (!isNaN(luongSo)) {
+                            var luongMoi = Math.round(luongSo * 1.1);
+                            textNode.nodeValue = luongMoi.toLocaleString("vi-VN");
+                        }
+                    }
+
+                    var manvNode = nhanviens[i].getElementsByTagName("manv")[0];
+                    var hotenNode = nhanviens[i].getElementsByTagName("hoten")[0];
+                    var tenHienThi = manvNode ? manvNode.textContent.trim() : (hotenNode ? hotenNode.textContent.trim() : ("NV " + (i + 1)));
+
+                    txt += tenHienThi + " (" + donvi + ") - Lương: " + textNode.nodeValue + "<br>";
+                }
+            }
+            document.getElementById("output").innerHTML = txt;
+        }
+    </script>
+</body>
+</html>

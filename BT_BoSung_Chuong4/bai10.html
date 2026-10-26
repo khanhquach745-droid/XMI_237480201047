@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 10</title>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 6px 12px; }
+        th { background-color: #f0f0f0; }
+        input { margin-bottom: 8px; padding: 6px; }
+        .form-box { margin-bottom: 16px; padding: 10px; border: 1px dashed #999; width: fit-content; }
+        .form-box input { margin-right: 6px; }
+        button { padding: 6px 12px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Quản Lý Nhân Viên</h2>
+
+    <div class="form-box">
+        <b>Thêm nhân viên mới:</b><br>
+        <input type="text" id="addManv" placeholder="Mã NV (VD: 004)">
+        <input type="text" id="addHoten" placeholder="Họ tên (VD: Tran Van C)">
+        <input type="text" id="addDonvi" placeholder="Đơn vị (VD: Kỹ Thuật)">
+        <input type="text" id="addLuong" placeholder="Lương (VD: 6.000.000)">
+        <button type="button" onclick="themNhanVien()">Thêm vào bảng</button>
+    </div>
+
+    <div>
+        Nhập tên đơn vị: 
+        <input type="text" id="filterInput" placeholder="Ví dụ: Kỹ Thuật, Hành Chính..." style="width: 250px;">
+    </div>
+
+    <div id="output">Đang tải dữ liệu...</div>
+
+    <script>
+        var xmlDocGlobal = null;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                xmlDocGlobal = this.responseXML;
+                hienThiBang("");
+            }
+        };
+        xhttp.open("GET", "danhsachnhanvien.xml", true);
+        xhttp.send();
+
+        function trichXuatDuLieu(nvNode) {
+            var data = { manv: "", hoten: "", donvi: "", luong: "" };
+
+            // 1. Kiểm tra thuộc tính (nếu tác giả XML đặt họ tên dạng attribute)
+            if (nvNode.getAttribute("hoten")) data.hoten = nvNode.getAttribute("hoten");
+            if (nvNode.getAttribute("ten")) data.hoten = nvNode.getAttribute("ten");
+
+            // 2. Duyệt qua tất cả các thẻ con thực tế trong phần tử <nhanvien>
+            var children = nvNode.children;
+            for (var j = 0; j < children.length; j++) {
+                var tag = children[j].tagName.toLowerCase();
+                var val = children[j].textContent.trim();
+
+                if (tag.indexOf("ma") > -1 || tag === "id") {
+                    data.manv = val;
+                } else if (tag.indexOf("donvi") > -1 || tag.indexOf("phong") > -1) {
+                    data.donvi = val;
+                } else if (tag.indexOf("luong") > -1 || tag.indexOf("salary") > -1) {
+                    data.luong = val;
+                } else if (tag.indexOf("ten") > -1 || tag.indexOf("name") > -1 || tag.indexOf("ho") > -1) {
+                    data.hoten = val;
+                }
+            }
+
+            // In ra console tab F12 để kiểm tra tên các thẻ thực tế
+            console.log("Dữ liệu nhân viên đọc được:", data);
+            return data;
+        }
+
+        function hienThiBang(tuKhoa) {
+            if (!xmlDocGlobal) return;
+
+            var nhanviens = xmlDocGlobal.getElementsByTagName("nhanvien");
+            var table = "<table><tr><th>Mã NV</th><th>Họ tên</th><th>Đơn vị</th><th>Lương</th></tr>";
+            var count = 0;
+            var searchKey = tuKhoa.toLowerCase().trim();
+
+            for (var i = 0; i < nhanviens.length; i++) {
+                var info = trichXuatDuLieu(nhanviens[i]);
+
+                if (searchKey === "" || info.donvi.toLowerCase().indexOf(searchKey) > -1) {
+                    count++;
+                    table += "<tr>" +
+                                "<td>" + info.manv + "</td>" +
+                                "<td>" + info.hoten + "</td>" +
+                                "<td>" + info.donvi + "</td>" +
+                                "<td>" + info.luong + "</td>" +
+                             "</tr>";
+                }
+            }
+            table += "</table>";
+
+            if (count === 0 && searchKey !== "") {
+                table = "<p>Không tìm thấy nhân viên thuộc đơn vị này.</p>";
+            }
+
+            document.getElementById("output").innerHTML = table;
+        }
+
+        function themNhanVien() {
+            if (!xmlDocGlobal) return;
+
+            var manvVal = document.getElementById("addManv").value.trim();
+            var hotenVal = document.getElementById("addHoten").value.trim();
+            var donviVal = document.getElementById("addDonvi").value.trim();
+            var luongVal = document.getElementById("addLuong").value.trim();
+
+            if (!manvVal || !hotenVal || !donviVal || !luongVal) {
+                alert("Vui lòng nhập đầy đủ cả 4 trường dữ liệu!");
+                return;
+            }
+
+            var root = xmlDocGlobal.documentElement;
+            var newNhanvien = xmlDocGlobal.createElement("nhanvien");
+
+            var nodeManv = xmlDocGlobal.createElement("manv");
+            nodeManv.textContent = manvVal;
+            newNhanvien.appendChild(nodeManv);
+
+            var nodeHoten = xmlDocGlobal.createElement("hotennv");
+            nodeHoten.textContent = hotenVal;
+            newNhanvien.appendChild(nodeHoten);
+
+            var nodeDonvi = xmlDocGlobal.createElement("donvi");
+            nodeDonvi.textContent = donviVal;
+            newNhanvien.appendChild(nodeDonvi);
+
+            var nodeLuong = xmlDocGlobal.createElement("luong");
+            nodeLuong.textContent = luongVal;
+            newNhanvien.appendChild(nodeLuong);
+
+            root.appendChild(newNhanvien);
+
+            var currentSearch = document.getElementById("filterInput").value;
+            hienThiBang(currentSearch);
+
+            document.getElementById("addManv").value = "";
+            document.getElementById("addHoten").value = "";
+            document.getElementById("addDonvi").value = "";
+            document.getElementById("addLuong").value = "";
+        }
+
+        document.getElementById("filterInput").addEventListener("input", function() {
+            hienThiBang(this.value);
+        });
+    </script>
+</body>
+</html>

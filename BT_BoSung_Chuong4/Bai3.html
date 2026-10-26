@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3: Truy xuất nút con đầu tiên và cuối cùng</title>
+</head>
+<body>
+    <h2>Kết quả truy xuất nút con</h2>
+    <div id="output"></div>
+
+    <script>
+        var xmlText = "<book><title>Học XML Cơ Bản</title><author>Nguyễn Văn A</author><year>2024</year><price>35.00</price></book>";
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+        var bookNode = xmlDoc.getElementsByTagName("book")[0];
+        var firstText = bookNode.firstElementChild.textContent;
+        var lastText = bookNode.lastElementChild.textContent;
+
+        var txt = "Giá trị nút con đầu tiên (firstElementChild): " + firstText + "<br>" +
+                  "Giá trị nút con cuối cùng (lastElementChild): " + lastText;
+
+        document.getElementById("output").innerHTML = txt;
+    </script>
+</body>
+</html>

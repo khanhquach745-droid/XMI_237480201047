@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 6: Tìm đơn vị của nhân viên 002</title>
+</head>
+<body>
+    <h2>Kết quả tra cứu nhân viên</h2>
+    <div id="output"></div>
+
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xhttp.open("GET", "danhsachnhanvien.xml", true);
+        xhttp.send();
+
+        function myFunction(xml) {
+            var xmlDoc = xml.responseXML;
+            var manvList = xmlDoc.getElementsByTagName("manv");
+            var txt = "Không tìm thấy nhân viên";
+            for (var i = 0; i < manvList.length; i++) {
+                if (manvList[i].childNodes[0].nodeValue.trim() == "002") {
+                    var parentNode = manvList[i].parentNode;
+                    var donvi = parentNode.getElementsByTagName("donvi")[0].childNodes[0].nodeValue;
+                    txt = "Đơn vị của nhân viên mã 002 là: " + donvi;
+                    break;
+                }
+            }
+            document.getElementById("output").innerHTML = txt;
+        }
+    </script>
+</body>
+</html>

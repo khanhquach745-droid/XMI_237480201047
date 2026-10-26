@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 7: Thêm sách mới vào XML</title>
+</head>
+<body>
+    <h2>Cây XML sau khi chèn nút mới</h2>
+    <div id="output"></div>
+
+    <script>
+        var xmlStr = "<bookstore></bookstore>";
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlStr, "application/xml");
+
+        var newBook = xmlDoc.createElement("book");
+
+        var newTitle = xmlDoc.createElement("title");
+        newTitle.textContent = "Lập trình Web";
+        newBook.appendChild(newTitle);
+
+        var newPrice = xmlDoc.createElement("price");
+        newPrice.textContent = "45.00";
+        newBook.appendChild(newPrice);
+
+        xmlDoc.documentElement.appendChild(newBook);
+
+        var serializer = new XMLSerializer();
+        var xmlResult = serializer.serializeToString(xmlDoc);
+
+        document.getElementById("output").innerText = xmlResult;
+    </script>
+</body>
+</html>

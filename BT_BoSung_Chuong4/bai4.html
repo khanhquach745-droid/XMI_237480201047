@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4: Sách có giá lớn hơn 30.00</title>
+</head>
+<body>
+    <h2>Danh sách sách có giá > 30.00</h2>
+    <div id="output"></div>
+
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xhttp.open("GET", "books.xml", true);
+        xhttp.send();
+
+        function myFunction(xml) {
+            var xmlDoc = xml.responseXML;
+            var books = xmlDoc.getElementsByTagName("book");
+            var txt = "";
+            for (var i = 0; i < books.length; i++) {
+                var price = parseFloat(books[i].getElementsByTagName("price")[0].textContent);
+                if (price > 30.00) {
+                    var title = books[i].getElementsByTagName("title")[0].textContent;
+                    txt += title + " - Giá: " + price + "<br>";
+                }
+            }
+            document.getElementById("output").innerHTML = txt;
+        }
+    </script>
+</body>
+</html>

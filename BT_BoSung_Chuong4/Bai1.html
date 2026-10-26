@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 1: Tải chuỗi XML và kiểm tra tên nút</title>
+</head>
+<body>
+    <h2>Kết quả kiểm tra nút XML</h2>
+    <div id="output"></div>
+
+    <script>
+        var xmlStr = "<class><student><name>Nguyen Van A</name><age>20</age></student></class>";
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlStr, "application/xml");
+
+        var rootNode = xmlDoc.documentElement;
+        var firstChild = rootNode.firstElementChild;
+
+        var txt = "Tên nút gốc: " + rootNode.nodeName + "<br>" +
+                  "Tên thẻ nút con đầu tiên: " + firstChild.nodeName;
+
+        document.getElementById("output").innerHTML = txt;
+    </script>
+</body>
+</html>

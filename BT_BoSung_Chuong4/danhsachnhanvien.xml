@@ -1,0 +1,20 @@
+<danhsach>
+    <nhanvien>
+        <manv>001</manv>
+        <tennv>Nguyễn Thế Anh</tennv>
+        <donvi>Hành Chính</donvi>
+        <luong>5.000.000</luong>
+    </nhanvien>
+    <nhanvien>
+        <manv>002</manv>
+        <tennv>Nguyễn Thanh Bình</tennv>
+        <donvi>Kỹ Thuật</donvi>
+        <luong>7.000.000</luong>
+    </nhanvien>
+    <nhanvien>
+        <manv>003</manv>
+        <tennv>Vương Thúy Phượng</tennv>
+        <donvi>Tổ Chức</donvi>
+        <luong>8.000.000</luong>
+    </nhanvien>
+</danhsach>
