@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<laptops>
+  <laptop>
+    <name>Toshiba 2021</name>
+    <cpu>Core i5 2.6Ghz</cpu>
+    <ram>8GB</ram>
+  </laptop>
+  <laptop>
+    <name>Lenovo ThinPack 2022</name>
+    <cpu>Core i7 3.6Ghz</cpu>
+    <ram>16GB</ram>
+  </laptop>
+</laptops>

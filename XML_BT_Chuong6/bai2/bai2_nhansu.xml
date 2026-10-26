@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<danhsach>
+  <congnhan>
+    <maso>001</maso>
+    <hoten>Nguyễn Thế Anh</hoten>
+    <donvi>Hành chính</donvi>
+    <luong>5.000.000</luong>
+  </congnhan>
+  <congnhan>
+    <maso>002</maso>
+    <hoten>Nguyễn Thanh Bình</hoten>
+    <donvi>Kỹ thuật</donvi>
+    <luong>7.000.000</luong>
+  </congnhan>
+  <congnhan>
+    <maso>003</maso>
+    <hoten>Vương Thúy Phượng</hoten>
+    <donvi>Tổ chức</donvi>
+    <luong>8.000.000</luong>
+  </congnhan>
+</danhsach>

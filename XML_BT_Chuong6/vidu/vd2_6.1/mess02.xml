@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sinhvien>
+    <sv type ="student">
+        <Ten>Nguyen A</Ten>
+        <ID>1</ID>
+    </sv>
+    <sv type ="student">
+        <Ten>Nguyen B</Ten>
+        <ID>2</ID>
+    </sv>
+    <sv type ="student">
+        <Ten>Nguyen C</Ten>
+        <ID>3</ID>
+    </sv>
+</sinhvien>

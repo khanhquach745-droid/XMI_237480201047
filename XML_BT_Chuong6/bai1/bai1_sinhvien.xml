@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <id>001</id>
+        <name>Nguyen Le</name>
+        <date>12-05-2000</date>
+        <city>Bac Lieu</city>
+    </student>
+    <student>
+        <id>002</id>
+        <name>Nguyen Hoang</name>
+        <date>14-07-2002</date>
+        <city>Ca Mau</city>
+    </student>
+    <student>
+        <id>003</id>
+        <name>Duong Thanh</name>
+        <date>23-04-2001</date>
+        <city>Can Tho</city>
+    </student>
+    <student>
+        <id>004</id>
+        <name>Lam Xuan</name>
+        <date>17-09-1998</date>
+        <city>Bac Lieu</city>
+    </student>
+    <student>
+        <id>005</id>
+        <name>Huynh Man</name>
+        <date>25-09-1999</date>
+        <city>Ca Mau</city>
+    </student>
+</students>

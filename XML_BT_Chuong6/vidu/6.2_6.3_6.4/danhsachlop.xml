@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<danhsach>
+  <sinhvien sinhvien_id="cn001">
+    <hoten>Nguyen Trinh</hoten>
+    <nganh>tin hoc</nganh>
+    <tuoi>20</tuoi>
+  </sinhvien>
+	<sinhvien>
+		<hoten>Nguyễn Hoàng Tiến</hoten>
+		<nganh>Quản trị kinh doanh</nganh>
+		<tuoi>20</tuoi>
+	</sinhvien>
+	<sinhvien>
+		<hoten>Nguyễn Hoàng Tiến</hoten>
+		<nganh>Quản trị kinh doanh</nganh>
+		<tuoi>20</tuoi>
+	</sinhvien>
+	<sinhvien>
+		<hoten>Nguyễn Hoàng Tiến</hoten>
+		<nganh>Quản trị kinh doanh</nganh>
+		<tuoi>20</tuoi>
+	</sinhvien>
+</danhsach>

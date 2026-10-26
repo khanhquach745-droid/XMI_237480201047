@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<danhsach>
+    <sinhvien>
+        <hoten>Huỳnh Huy Tuấn</hoten>
+        <nganh>Khoa học máy tính</nganh>
+        <tuoi>52</tuoi>
+    </sinhvien>
+    <sinhvien>
+        <hoten>Huỳnh Trâm Anh</hoten>
+        <nganh>Nông nghiệp</nganh>
+        <tuoi>18</tuoi>
+    </sinhvien>
+    <sinhvien>
+        <hoten>Nguyễn Hoàng Tiến</hoten>
+        <nganh>Quản trị kinh doanh</nganh>
+        <tuoi>20</tuoi>
+    </sinhvien>
+    <sinhvien>
+        <hoten>Trương Thu Hương</hoten>
+        <nganh>Công nghệ phần mềm</nganh>
+        <tuoi>20</tuoi>
+    </sinhvien>
+    <sinhvien>
+        <hoten>Phần Minh Đạt</hoten>
+        <nganh>Hệ thống thông tin</nganh>
+        <tuoi>22</tuoi>
+    </sinhvien>
+    <sinhvien>
+        <hoten>Lê Thanh Hải</hoten>
+        <nganh>Mạng máy tính</nganh>
+        <tuoi>21</tuoi>
+    </sinhvien>
+</danhsach>

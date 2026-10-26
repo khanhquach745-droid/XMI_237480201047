@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student>
+    <id>001</id>
+    <name>Gia le</name>
+    <date>12-05-2000</date>
+    <city>Bac Lieu</city>
+  </student>
+  <student>
+    <id>003</id>
+    <name>Hoang Nam</name>
+    <date>20-09-2005</date>
+    <city>Ca Mau</city>
+  </student>
+  <student>
+    <id>002</id>
+    <name>Ngo huy</name>
+    <date>10-10-2005</date>
+    <city>bạc liêu</city>
+  </student>
+</students>
