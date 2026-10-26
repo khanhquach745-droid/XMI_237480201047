@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sinhviens>
+    <sinhvien>
+        <masv>SV002</masv>
+        <hoten>Tran Thi Binh</hoten>
+        <lop>DH02</lop>
+        <diem>7.5</diem>
+    </sinhvien>
+    <sinhvien>
+        <masv>SV003</masv>
+        <hoten>Le Van Cuong</hoten>
+        <lop>DH01</lop>
+        <diem>9.0</diem>
+    </sinhvien>
+    <sinhvien>
+        <masv>SV001</masv>
+        <hoten>Trần Trung Héo</hoten>
+        <lop>17DCNTT1</lop>
+        <diem>9.99</diem>
+    </sinhvien>
+</sinhviens>

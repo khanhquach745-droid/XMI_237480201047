@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<data>
+	<items>
+		<item name="item1" price="5">book</item>
+		<item name="item2" price="15">chair</item>
+		<item name="item3" price="20">window</item>
+	</items>
+</data>

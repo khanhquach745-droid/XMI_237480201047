@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employee>
+    <fname> Huỳnh </fname>
+    <lname> Tuấn </lname>
+    <home> Bạc Liêu </home>
+    <expertise name ="Python" />
+    <expertise name ="Javascript" />
+    <expertise name ="PHP" />
+</employee>
